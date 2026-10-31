@@ -33,7 +33,7 @@ header small{display:block;margin-top:3px;opacity:.92}
 
 .shift-card{text-align:center;border:1px solid var(--border);border-radius:22px;padding:22px 16px 24px;background:#fafafa;box-shadow:0 10px 28px rgba(0,0,0,.06)}
 .day{font-size:1.3rem;font-weight:800;text-transform:capitalize}
-.date{color:var(--muted);margin-top:3px}
+.date{color:#f2c500;margin-top:4px;font-size:1.08rem;font-weight:700}
 .shift{font-size:5.2rem;font-weight:950;line-height:1;margin:22px 0 3px}
 .label{font-size:1.32rem;font-weight:850;text-transform:uppercase}
 .note{min-height:1.2em;color:var(--muted);font-size:.88rem;margin-top:12px}
@@ -90,8 +90,8 @@ h2{margin:0 0 4px}
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:11px}
 .actions a{display:block;text-decoration:none;text-align:center;border:1px solid #ddd;border-radius:11px;padding:10px;font-weight:750;background:#fff}
 .actions a:last-child{background:#f4fff7}
-.linkcard{text-decoration:none;color:var(--text)}
-.linkcard span{display:block;color:var(--muted);font-size:.84rem;margin-top:3px}
+.linkcard{display:block;text-decoration:none!important;color:#171717!important;-webkit-text-fill-color:#171717;background:#ffffff!important;border:1px solid #e3e3e3!important;border-radius:15px!important;padding:15px 16px!important;margin-bottom:11px!important;box-shadow:0 4px 14px rgba(0,0,0,.04)}
+.linkcard strong{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:1rem;color:#171717!important;-webkit-text-fill-color:#171717}.linkcard strong::after{content:"›";font-size:1.5rem;line-height:1;color:#b30000!important;-webkit-text-fill-color:#b30000}.linkcard span{display:block;color:#6f6f6f!important;-webkit-text-fill-color:#6f6f6f;font-size:.84rem;margin-top:4px}
 
 .bottom{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(100%,580px);height:68px;background:#fff;border-top:1px solid #ddd;display:grid;grid-template-columns:repeat(4,1fr);z-index:30;padding-bottom:env(safe-area-inset-bottom)}
 .bottom button{border:0;background:#fff;color:#666;font-size:.76rem;font-weight:750}
@@ -173,9 +173,10 @@ h2{margin:0 0 4px}
 
 <section id="info" class="view">
   <h2>Info CGIL</h2>
-  <a class="linkcard" href="https://www.collettiva.it/" target="_blank" rel="noopener"><strong>Collettiva</strong><span>Informazione CGIL</span></a>
-  <a class="linkcard" href="https://www.filctemcgil.it/" target="_blank" rel="noopener"><strong>FILCTEM CGIL Nazionale</strong><span>Sito nazionale</span></a>
-  <a class="linkcard" href="https://www.filctemlazio.it/" target="_blank" rel="noopener"><strong>FILCTEM CGIL Lazio</strong><span>Sito regionale</span></a>
+  <p class="sub">Collegamenti utili a informazione e strutture FILCTEM.</p>
+  <a class="linkcard" href="https://www.collettiva.it/" target="_blank" rel="noopener"><strong>Collettiva</strong><span>Notizie e informazione CGIL</span></a>
+  <a class="linkcard" href="https://www.filctemcgil.it/" target="_blank" rel="noopener"><strong>FILCTEM CGIL Nazionale</strong><span>Sito nazionale della categoria</span></a>
+  <a class="linkcard" href="https://www.filctemlazio.it/" target="_blank" rel="noopener"><strong>FILCTEM CGIL Lazio</strong><span>Sito regionale FILCTEM Lazio</span></a>
 </section>
 
 <nav class="bottom">
