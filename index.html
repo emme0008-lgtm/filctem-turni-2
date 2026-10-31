@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#b30000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Turni FILCTEM">
+<title>Turni FILCTEM CGIL</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23b30000'/><text x='50' y='60' text-anchor='middle' font-size='34' font-family='Arial' font-weight='700' fill='white'>CGIL</text></svg>">
+<style>
+:root{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#171717;background:#f2f2f2;--red:#b30000;--border:#e2e2e2}
+*{box-sizing:border-box}body{margin:0;background:#f2f2f2}button,input,textarea{font:inherit}.app{width:min(100%,580px);min-height:100dvh;margin:auto;background:#fff;padding-bottom:78px}
+header{position:sticky;top:0;z-index:20;background:linear-gradient(135deg,#8d0000,#d31919);color:#fff;padding:18px 18px 15px}
+header b{display:block;font-size:1.15rem;letter-spacing:.5px}header small{opacity:.9}
+.view{display:none;padding:18px}.view.active{display:block}
+.teambar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:15px}.teambar span{font-weight:800}
+.team-buttons{display:flex;gap:7px}.team-buttons button{width:46px;height:42px;border:1px solid var(--border);border-radius:11px;background:#fff;font-weight:850}.team-buttons button.active{background:var(--red);color:#fff;border-color:var(--red)}
+.shift-card{text-align:center;border:1px solid var(--border);border-radius:22px;padding:22px 16px 24px;background:#fafafa;box-shadow:0 10px 28px #00000010}
+.day{font-size:1.3rem;font-weight:850;text-transform:capitalize}.date{color:#666;margin-top:3px}.shift{font-size:5.5rem;font-weight:950;line-height:1;margin:23px 0 2px}.label{font-size:1.35rem;font-weight:900;text-transform:uppercase}.note{min-height:1.2em;color:#777;font-size:.88rem;margin-top:12px}.rest .shift,.rest .label{color:#18833d}.out .shift{font-size:2.2rem}
+.nav{display:grid;grid-template-columns:72px 1fr 72px;gap:10px;margin-top:14px}.nav button,.jump button{height:48px;border:1px solid var(--border);border-radius:13px;background:#fff;font-weight:800}.nav .today{background:#151515;color:#fff}.nav .arrow{font-size:2rem}.jump{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:9px}.jump button{height:42px}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:18px}.legend div{border:1px solid var(--border);border-radius:13px;padding:11px;background:#fafafa}.legend b,.legend span{display:block}.legend span{font-size:.8rem;color:#666}
+h2{margin:0 0 4px}.sub{margin:0 0 14px;color:#666}
+.contact,.linkcard,.daycard,.summary-card{border:1px solid var(--border);border-radius:15px;background:#fff;padding:13px;margin-bottom:10px}.contact strong,.linkcard strong{display:block}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:11px}.actions a,.linkcard{text-decoration:none;color:inherit}.actions a{display:block;text-align:center;border:1px solid #ddd;border-radius:11px;padding:10px;font-weight:750}.actions a:last-child{background:#f5fff7}
+.linkcard span{display:block;color:#666;font-size:.84rem;margin-top:3px}
+.month-head{display:grid;grid-template-columns:50px 1fr 50px;gap:8px;align-items:center;margin:12px 0}.month-head button{height:42px;border:1px solid var(--border);background:#fff;border-radius:11px;font-size:1.6rem}.month-head strong{text-align:center;text-transform:capitalize}
+.daycard summary{display:flex;justify-content:space-between;gap:8px;align-items:center;cursor:pointer;font-weight:800}.daycard summary span{font-size:.82rem;color:#666;font-weight:600}.daycard[open]{background:#fcfcfc}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.formgrid label,.notes label{font-size:.78rem;color:#555}.formgrid input,.notes textarea{width:100%;margin-top:4px;border:1px solid #d7d7d7;border-radius:10px;padding:9px;background:#fff}.notes textarea{min-height:78px;resize:vertical}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.checks label{font-size:.84rem}.summary-wrap{margin-top:17px;border-top:1px solid #eee;padding-top:15px}.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.summary-card{margin:0}.summary-card b,.summary-card span{display:block}.summary-card span{font-size:.8rem;color:#666;margin-top:2px}.printbtn,.backupbtn{width:100%;height:44px;border:0;border-radius:12px;background:#151515;color:#fff;font-weight:800;margin-top:10px}.backupbtn{background:#fff;color:#222;border:1px solid #ddd}
+.bottom{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(100%,580px);height:68px;background:#fff;border-top:1px solid #ddd;display:grid;grid-template-columns:repeat(4,1fr);z-index:30;padding-bottom:env(safe-area-inset-bottom)}.bottom button{border:0;background:#fff;color:#666;font-size:.76rem;font-weight:750}.bottom button.active{color:var(--red)}
+.smallnote{font-size:.78rem;color:#777;margin-top:10px}
+@media print{header,.bottom,#turni,#contatti,#info,.month-head button,.backupbtn,.printbtn{display:none!important}#registro{display:block!important;padding:0}.app,body{background:#fff}.daycard{break-inside:avoid}}
+</style>
+</head>
+<body>
+<main class="app">
+<header><b>FILCTEM CGIL</b><small>Turni 6-giornisti · Yokohama TWS</small></header>
+
+<section id="turni" class="view active">
+<div class="teambar"><span>Squadra</span><div class="team-buttons">
+<button data-team="A">A</button><button data-team="B">B</button><button data-team="C">C</button><button data-team="D">D</button>
+</div></div>
+<div id="shiftCard" class="shift-card">
+<div id="dayName" class="day">—</div><div id="dateText" class="date">—</div>
+<div id="shiftCode" class="shift">—</div><div id="shiftLabel" class="label">—</div><div id="statusNote" class="note"></div>
+</div>
+<div class="nav"><button id="prevDay" class="arrow">‹</button><button id="today" class="today">Oggi</button><button id="nextDay" class="arrow">›</button></div>
+<div class="jump"><button id="minus15">−15 giorni</button><button id="plus15">+15 giorni</button></div>
+<div class="legend">
+<div><b>1°</b><span>Mattina · 06:00–14:00</span></div><div><b>2°</b><span>Pomeriggio · 14:00–22:00</span></div>
+<div><b>3°</b><span>Notte · 22:00–06:00</span></div><div><b>R</b><span>Riposo</span></div>
+</div>
+</section>
+
+<section id="registro" class="view">
+<h2>Registro mese</h2><p class="sub">Annotazioni giornaliere da confrontare con il cedolino.</p>
+<div class="month-head"><button id="prevMonth">‹</button><strong id="monthTitle">—</strong><button id="nextMonth">›</button></div>
+<div id="monthList"></div>
+<div class="summary-wrap">
+<h3>Riepilogo mese</h3><div id="monthSummary" class="summary-grid"></div>
+<button id="printBtn" class="printbtn">Stampa / salva PDF</button>
+<button id="backupBtn" class="backupbtn">Esporta backup dati</button>
+<p class="smallnote">I dati restano nel browser di questo dispositivo. L'esportazione serve come copia di sicurezza.</p>
+</div>
+</section>
+
+<section id="contatti" class="view">
+<h2>Contatta i delegati</h2><p class="sub">Chiamata diretta o WhatsApp.</p>
+<div id="contacts"></div>
+</section>
+
+<section id="info" class="view">
+<h2>Info CGIL</h2>
+<a class="linkcard" href="https://www.collettiva.it/" target="_blank"><strong>Collettiva</strong><span>Informazione CGIL</span></a>
+<a class="linkcard" href="https://www.filctemcgil.it/" target="_blank"><strong>FILCTEM CGIL Nazionale</strong><span>Sito nazionale</span></a>
+<a class="linkcard" href="https://www.filctemlazio.it/" target="_blank"><strong>FILCTEM CGIL Lazio</strong><span>Sito regionale</span></a>
+</section>
+
+<nav class="bottom">
+<button data-view="turni" class="active">Turni</button><button data-view="registro">Registro</button><button data-view="contatti">Delegati</button><button data-view="info">Info</button>
+</nav>
+</main>
+
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+const contacts=[
+{name:"Manuel Marconi",phone:"+393470613045"},
+{name:"Andrea Piai",phone:"+393334579765"},
+{name:"Angelo Tarquini",phone:"+393927796821"},
+{name:"Pierluigi Iacobbi",phone:"+393284917585"}];
+
+let team=localStorage.getItem("filctem_team")||"A";
+let currentDate=new Date(); currentDate.setHours(12,0,0,0);
+let registerDate=new Date(); registerDate.setDate(1); registerDate.setHours(12,0,0,0);
+
+function squadra1(m,d){
+ if(m===10)return d<=21?"D":d<=24?"B":d<=25?"NON PREVISTO":d<=28?"A":"C";
+ if(m===11)return d<=1?"NON PREVISTO":d<=4?"B":d<=7?"D":d<=8?"NON PREVISTO":d<=11?"C":d<=14?"A":d<=15?"NON PREVISTO":d<=18?"D":d<=21?"B":d<=22?"NON PREVISTO":d<=25?"A":d<=28?"C":d<=29?"NON PREVISTO":"B";
+ if(m===12)return d<=2?"B":d<=5?"D":d<=6?"NON PREVISTO":d<=9?"C":d<=12?"A":d<=13?"NON PREVISTO":d<=16?"D":d<=19?"B":d<=20?"NON PREVISTO":d<=24?"A":d<=27?"NON PREVISTO":"FERIE";
+ return "FUORI CALENDARIO";}
+function squadra2(m,d){
+ if(m===10)return d<=21?"B":d<=24?"D":d<=25?"NON PREVISTO":d<=28?"C":"A";
+ if(m===11)return d<=1?"NON PREVISTO":d<=4?"D":d<=7?"B":d<=8?"NON PREVISTO":d<=11?"A":d<=14?"C":d<=15?"NON PREVISTO":d<=18?"B":d<=21?"D":d<=22?"NON PREVISTO":d<=25?"C":d<=28?"A":d<=29?"NON PREVISTO":"D";
+ if(m===12)return d<=2?"D":d<=5?"B":d<=6?"NON PREVISTO":d<=9?"A":d<=12?"C":d<=13?"NON PREVISTO":d<=16?"B":d<=19?"D":d<=20?"NON PREVISTO":d<=23?"C":d<=27?"NON PREVISTO":"FERIE";
+ return "FUORI CALENDARIO";}
+function squadra3(m,d){
+ if(m===10)return d<=21?"A":d<=24?"C":d<=28?"B":"D";
+ if(m===11)return d<=1?"B":d<=4?"C":d<=7?"A":d<=11?"D":d<=14?"B":d<=18?"A":d<=21?"C":d<=25?"B":d<=28?"D":"C";
+ if(m===12)return d<=2?"C":d<=5?"A":d<=9?"D":d<=12?"B":d<=16?"A":d<=19?"C":d<=23?"B":d<=27?"NON PREVISTO":"FERIE";
+ return "FUORI CALENDARIO";}
+function riposo(m,d){
+ if(m===10)return d<=21?"C":d<=24?"A":d<=25?"A/C/D":d<=28?"D":"B";
+ if(m===11)return d<=1?"A/C/D":d<=4?"A":d<=7?"C":d<=8?"A/B/C":d<=11?"B":d<=14?"D":d<=15?"B/C/D":d<=18?"C":d<=21?"A":d<=22?"A/C/D":d<=25?"D":d<=28?"B":d<=29?"A/B/D":"A";
+ if(m===12)return d<=2?"A":d<=5?"C":d<=6?"A/B/C":d<=9?"B":d<=12?"D":d<=13?"B/C/D":d<=16?"C":d<=19?"A":d<=20?"A/C/D":d<=23?"D":d<=24?"B/C/D":d<=27?"A/B/C/D":"FERIE";
+ return "FUORI CALENDARIO";}
+const hasTeam=(v,t)=>(v||"").split("/").includes(t);
+
+function getShift(dt,t){
+ const y=dt.getFullYear(),m=dt.getMonth()+1,d=dt.getDate();
+ if(y!==2026||m<10||m>12)return {code:"—",label:"Fuori calendario",note:"Calendario disponibile: ottobre–dicembre 2026.",out:true};
+ const a=squadra1(m,d),b=squadra2(m,d),c=squadra3(m,d),r=riposo(m,d);
+ if(a===t)return {code:"1°",label:"Mattina",note:"06:00–14:00"};
+ if(b===t)return {code:"2°",label:"Pomeriggio",note:"14:00–22:00"};
+ if(c===t)return {code:"3°",label:"Notte",note:"22:00–06:00"};
+ if(hasTeam(r,t))return {code:"R",label:"Riposo",note:"",rest:true};
+ if([a,b,c,r].includes("FERIE"))return {code:"F",label:"Ferie",note:"Ferie collettive / periodo non lavorato",rest:true};
+ return {code:"—",label:"Non previsto",note:"Turnazione non prevista per questa squadra/data.",out:true};
+}
+function renderTurni(){
+ document.querySelectorAll("[data-team]").forEach(b=>b.classList.toggle("active",b.dataset.team===team));
+ $("dayName").textContent=new Intl.DateTimeFormat("it-IT",{weekday:"long"}).format(currentDate);
+ $("dateText").textContent=new Intl.DateTimeFormat("it-IT",{day:"2-digit",month:"long",year:"numeric"}).format(currentDate);
+ const s=getShift(currentDate,team),card=$("shiftCard");
+ $("shiftCode").textContent=s.code;$("shiftLabel").textContent=s.label;$("statusNote").textContent=s.note||"";
+ card.classList.toggle("rest",!!s.rest);card.classList.toggle("out",!!s.out);
+}
+document.querySelectorAll("[data-team]").forEach(b=>b.addEventListener("click",()=>{team=b.dataset.team;localStorage.setItem("filctem_team",team);renderTurni()}));
+function addDays(n){currentDate.setDate(currentDate.getDate()+n);renderTurni()}
+$("prevDay").onclick=()=>addDays(-1);$("nextDay").onclick=()=>addDays(1);$("minus15").onclick=()=>addDays(-15);$("plus15").onclick=()=>addDays(15);
+$("today").onclick=()=>{currentDate=new Date();currentDate.setHours(12,0,0,0);renderTurni()};
+
+$("contacts").innerHTML=contacts.map(c=>`<div class="contact"><strong>${c.name}</strong><div class="actions"><a href="tel:${c.phone}">Chiama</a><a target="_blank" rel="noopener" href="https://wa.me/${c.phone.replace(/\D/g,"")}">WhatsApp</a></div></div>`).join("");
+
+function regKey(d){return `filctem_reg2_${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
+function loadReg(d){try{return JSON.parse(localStorage.getItem(regKey(d))||"{}")}catch{return {}}}
+function saveReg(d,o){localStorage.setItem(regKey(d),JSON.stringify(o))}
+function toMin(v){if(!v||!v.includes(":"))return null;const [h,m]=v.split(":").map(Number);return h*60+m}
+function worked(a,b){a=toMin(a);b=toMin(b);if(a===null||b===null)return 0;let x=b-a;return x<0?x+1440:x}
+
+function renderRegister(){
+ $("monthTitle").textContent=new Intl.DateTimeFormat("it-IT",{month:"long",year:"numeric"}).format(registerDate);
+ const y=registerDate.getFullYear(),m=registerDate.getMonth(),days=new Date(y,m+1,0).getDate();
+ const list=$("monthList"); list.innerHTML="";
+ let st=0,mg=0,fe=0,ma=0,pe=0,ua=0,wm=0;
+ for(let n=1;n<=days;n++){
+   const d=new Date(y,m,n,12),o=loadReg(d);
+   st+=Number(o.straordinario||0);mg+=Number(o.maggiorazione||0);fe+=o.ferie?1:0;ma+=o.malattia?1:0;pe+=o.permesso?1:0;ua+=o.uscitaAnticipata?1:0;wm+=worked(o.entrata,o.uscita);
+   const det=document.createElement("details");det.className="daycard";
+   const hasData=Object.values(o).some(v=>v===true||String(v||"").trim()!=="");
+   det.innerHTML=`<summary><span style="font-weight:800;color:#171717">${new Intl.DateTimeFormat("it-IT",{weekday:"long",day:"2-digit"}).format(d)}</span><span>${hasData?"● annotato":"apri"}</span></summary>
+   <div class="formgrid">
+   <label>Entrata<input type="time" data-f="entrata" value="${o.entrata||""}"></label>
+   <label>Uscita<input type="time" data-f="uscita" value="${o.uscita||""}"></label>
+   <label>Straordinario (ore)<input type="number" step="0.25" min="0" data-f="straordinario" value="${o.straordinario||""}"></label>
+   <label>Maggiorazioni (ore)<input type="number" step="0.25" min="0" data-f="maggiorazione" value="${o.maggiorazione||""}"></label></div>
+   <div class="checks">
+   <label><input type="checkbox" data-f="uscitaAnticipata" ${o.uscitaAnticipata?"checked":""}> Uscita anticipata</label>
+   <label><input type="checkbox" data-f="ferie" ${o.ferie?"checked":""}> Ferie</label>
+   <label><input type="checkbox" data-f="malattia" ${o.malattia?"checked":""}> Malattia</label>
+   <label><input type="checkbox" data-f="permesso" ${o.permesso?"checked":""}> Permesso</label></div>
+   <div class="notes"><label>Note libere<textarea data-f="note" placeholder="Annotazioni del giorno...">${o.note||""}</textarea></label></div>`;
+   det.querySelectorAll("[data-f]").forEach(inp=>{
+     const save=()=>{const cur=loadReg(d);cur[inp.dataset.f]=inp.type==="checkbox"?inp.checked:inp.value;saveReg(d,cur)};
+     inp.addEventListener(inp.tagName==="TEXTAREA"?"blur":"change",()=>{save(); if(inp.tagName!=="TEXTAREA") renderRegister()});
+   });
+   list.appendChild(det);
+ }
+ $("monthSummary").innerHTML=[
+   [`${Math.floor(wm/60)}h ${wm%60}m`,"Ore entrata/uscita registrate"],
+   [st.toFixed(2),"Ore straordinario"],[mg.toFixed(2),"Ore maggiorazioni"],[ua,"Uscite anticipate"],
+   [fe,"Giorni ferie"],[ma,"Giorni malattia"],[pe,"Giorni permesso"]
+ ].map(x=>`<div class="summary-card"><b>${x[0]}</b><span>${x[1]}</span></div>`).join("");
+}
+$("prevMonth").onclick=()=>{registerDate.setMonth(registerDate.getMonth()-1);renderRegister()};
+$("nextMonth").onclick=()=>{registerDate.setMonth(registerDate.getMonth()+1);renderRegister()};
+$("printBtn").onclick=()=>window.print();
+$("backupBtn").onclick=()=>{
+ const data={};
+ for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith("filctem_reg2_"))data[k]=JSON.parse(localStorage.getItem(k))}
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+ const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="backup_registro_filctem.json";a.click();URL.revokeObjectURL(a.href);
+};
+
+document.querySelectorAll(".bottom button").forEach(b=>b.addEventListener("click",()=>{
+ document.querySelectorAll(".bottom button").forEach(x=>x.classList.remove("active"));b.classList.add("active");
+ document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));$(b.dataset.view).classList.add("active");
+ if(b.dataset.view==="registro")renderRegister();window.scrollTo({top:0,behavior:"smooth"});
+}));
+
+renderTurni();
+</script>
+</body>
+</html>
